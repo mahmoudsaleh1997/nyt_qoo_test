@@ -1,0 +1,3 @@
+enum ViewCardsEnum{
+  gridView,listView
+}

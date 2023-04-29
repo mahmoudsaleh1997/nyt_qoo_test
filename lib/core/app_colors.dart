@@ -13,4 +13,7 @@ class AppColors {
   static const Color grey = Colors.grey;
   static const Color gold = Color(0xffFFB902);
 
+  /// app colors
+  static const Color lightBackgroundColor = Color(0xffF6F4E8);
+
 }
