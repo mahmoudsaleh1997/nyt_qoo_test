@@ -9,6 +9,7 @@ class AppTextWidget extends StatelessWidget {
   final FontWeight? fontWeight;
   final Function()? onTap;
   final int maxLines;
+  final TextAlign? textAlign;
 
   AppTextWidget({
     required this.title,
@@ -17,6 +18,7 @@ class AppTextWidget extends StatelessWidget {
     this.width,
     this.onTap,
     this.fontWeight,
+    this.textAlign,
     this.maxLines = 1,
   });
 
@@ -34,6 +36,7 @@ class AppTextWidget extends StatelessWidget {
                 overflow: TextOverflow.ellipsis),
             overflow: TextOverflow.ellipsis,
           maxLines: maxLines,
+          textAlign: textAlign,
         ),
       ),
     );

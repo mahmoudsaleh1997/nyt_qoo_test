@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:nyt_qoo_test/core/app_colors.dart';
 import 'package:nyt_qoo_test/core/system_enum/view_cards_enum.dart';
 import 'package:nyt_qoo_test/widget/app_text_widget.dart';
+import '../../../core/constans.dart';
 import '../../../core/ui/gaps.dart';
 import '../../../widget/custom_network_image.dart';
 import '../../../widget/search_text_field.dart';
@@ -73,7 +74,7 @@ class TopStoriesListScreen extends StatelessWidget {
                     width: 20,
                     height: 20,
                     child: SvgPicture.asset(
-                      'assets/icons/search.svg',
+                      AppConstants.searchIcon,
                       color: AppColors.grey,
                     ),
                   ),
@@ -111,7 +112,7 @@ class TopStoriesListScreen extends StatelessWidget {
                   dropdownSearchDecoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Filter'.tr,
-                    prefixIcon: SvgPicture.asset('assets/icons/filter.svg'),
+                    prefixIcon: SvgPicture.asset(AppConstants.filterIcon),
                     prefixIconConstraints: BoxConstraints(
                       maxHeight: 20,
                       maxWidth: 20,
@@ -135,7 +136,7 @@ class TopStoriesListScreen extends StatelessWidget {
                       ),
                       padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                       child: SvgPicture.asset(
-                        'assets/icons/list_view_icon.svg',
+                        AppConstants.listViewIcon,
                         height: 30,
                         width: 30,
                       ),
@@ -156,7 +157,7 @@ class TopStoriesListScreen extends StatelessWidget {
                       ),
                       padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                       child: SvgPicture.asset(
-                        'assets/icons/grid_view_icon.svg',
+                        AppConstants.gridViewIcon,
                         height: 30,
                         width: 30,
                       ),
@@ -202,7 +203,7 @@ class TopStoriesListScreen extends StatelessWidget {
                         width: 20,
                         height: 20,
                         child: SvgPicture.asset(
-                          'assets/icons/search.svg',
+                          AppConstants.searchIcon,
                           color: AppColors.grey,
                         ),
                       ),
@@ -236,7 +237,7 @@ class TopStoriesListScreen extends StatelessWidget {
                   dropdownSearchDecoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Filter'.tr,
-                    prefixIcon: SvgPicture.asset('assets/icons/filter.svg'),
+                    prefixIcon: SvgPicture.asset(AppConstants.filterIcon),
                     prefixIconConstraints: BoxConstraints(
                       maxHeight: 20,
                       maxWidth: 20,
@@ -260,7 +261,7 @@ class TopStoriesListScreen extends StatelessWidget {
                       ),
                       padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                       child: SvgPicture.asset(
-                        'assets/icons/list_view_icon.svg',
+                        AppConstants.listViewIcon,
                         height: 30,
                         width: 30,
                       ),
@@ -281,7 +282,7 @@ class TopStoriesListScreen extends StatelessWidget {
                       ),
                       padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                       child: SvgPicture.asset(
-                        'assets/icons/grid_view_icon.svg',
+                        AppConstants.gridViewIcon,
                         height: 30,
                         width: 30,
                       ),
@@ -294,7 +295,7 @@ class TopStoriesListScreen extends StatelessWidget {
           Gaps.vGap16,
           controller.viewCardsEnum == ViewCardsEnum.gridView
               ? buildLandscapeGridView()
-              : buildPortraitListView(),
+              : buildLandscapeListView(),
         ],
       ),
     );
@@ -306,7 +307,7 @@ class TopStoriesListScreen extends StatelessWidget {
         itemCount: 10,
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: (){
+            onTap: () {
               controller.onCardTapped();
             },
             child: Container(
@@ -393,7 +394,7 @@ class TopStoriesListScreen extends StatelessWidget {
         ),
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: (){
+            onTap: () {
               controller.onCardTapped();
             },
             child: Container(
@@ -478,7 +479,7 @@ class TopStoriesListScreen extends StatelessWidget {
         ),
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: (){
+            onTap: () {
               controller.onCardTapped();
             },
             child: Container(
@@ -546,6 +547,87 @@ class TopStoriesListScreen extends StatelessWidget {
               ),
             ),
           );
+        },
+      ),
+    );
+  }
+
+  buildLandscapeListView() {
+    return Expanded(
+      child: ListView.separated(
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              controller.onCardTapped();
+            },
+            child: Container(
+              width: 0.9.sw,
+              decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(width: 1, color: AppColors.gold)),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: CustomNetworkImage(
+                      width: 0.2.sw,
+                      imageUrl: 'https://picsum.photos/id/237/200/300',
+                      height: 100,
+                      errorWidget: Icon(Icons.error),
+                      loadingWidget: ImageShimmerEffect(
+                        height: 100,
+                        width: 0.3.sw,
+                        raduis: 10,
+                      ),
+                      boxFit: BoxFit.contain,
+                    ),
+                  ),
+                  Gaps.hGap8,
+                  Container(
+                    height: 100,
+                    width: 0.6.sw,
+                    padding: EdgeInsets.symmetric(vertical: 5),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppTextWidget(
+                          title: 'this is the title here ' * 3,
+                          width: 0.5.sw,
+                          maxLines: 3,
+                          fontSize: 16.sp,
+                        ),
+                        RichText(
+                          text: TextSpan(
+                            text: 'By:',
+                            style: TextStyle(
+                              color: AppColors.grey,
+                              fontSize: 14.sp,
+                            ),
+                            children: [
+                              TextSpan(
+                                text: 'Auther Name ' * 4,
+                                style: TextStyle(
+                                  color: AppColors.grey,
+                                  fontSize: 14.sp,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        },
+        separatorBuilder: (context, index) {
+          return Gaps.vGap10;
         },
       ),
     );
