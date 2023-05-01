@@ -15,7 +15,7 @@ class App extends StatelessWidget {
       splitScreenMode: true,
       builder:(context,child) {
         return GetMaterialApp(
-          themeMode:ThemeMode.dark,
+
           title: 'app_title'.tr,
           debugShowCheckedModeBanner: false,
           textDirection: DefaultSetting.appDirection,

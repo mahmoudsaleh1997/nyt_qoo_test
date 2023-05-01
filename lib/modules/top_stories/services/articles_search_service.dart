@@ -1,26 +1,25 @@
+
+
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
 import 'package:logger/logger.dart';
-import 'package:nyt_qoo_test/core/net/base_response.dart';
-import 'package:nyt_qoo_test/core/ui/dialogs.dart';
-import 'package:nyt_qoo_test/core/ui/snack_bars.dart';
-import 'package:nyt_qoo_test/modules/top_stories/model/response/top_stories_list_response.dart';
+import 'package:nyt_qoo_test/core/net/http_client.dart';
 
-import '../../../core/net/http_client.dart';
+import '../../../core/net/base_response.dart';
 import '../../../core/net/rest_client.dart';
+import '../model/response/search_articles_list_response.dart';
 
-class TopStoriesListService {
+class ArticlesSearchService {
   HttpClient httpClient = HttpClient();
   Logger logger = Logger();
 
-  Future<BaseResponse<TopStoriesListModel>> getTopStories(
-      String section) async {
-    TopStoriesListModel? topStoriesListModel;
+  Future<BaseResponse<SearchArticlesListModel>> search(
+      String keyword , int pageNumber) async {
+    SearchArticlesListModel? topStoriesListModel;
     RestClient restClient = RestClient(httpClient.instance);
     try {
-      topStoriesListModel = await restClient.getTopStories(section);
+      topStoriesListModel = await restClient.search(keyword,keyword,keyword,pageNumber);
       return BaseResponse(
         success: true,
         dioError: null,
@@ -59,10 +58,5 @@ class TopStoriesListService {
           );
       }
     }
-    return BaseResponse(
-      success: false,
-      dioError: null,
-      response: null,
-    );
   }
 }

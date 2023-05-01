@@ -10,4 +10,5 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // to allow portrait Up mode and landscape Left mode
   runApp(App());
+  
 }

@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 import 'package:nyt_qoo_test/modules/splash/bindings/splash_binding.dart';
+import 'package:nyt_qoo_test/modules/top_stories/bindings/articles_search_binding.dart';
 import 'package:nyt_qoo_test/modules/top_stories/bindings/top_stories_details_binding.dart';
 import 'package:nyt_qoo_test/modules/top_stories/bindings/top_stories_list_binding.dart';
+import 'package:nyt_qoo_test/modules/top_stories/presentation/articles_search_screen.dart';
 import 'package:nyt_qoo_test/modules/top_stories/presentation/top_stories_details_screen.dart';
 import 'package:nyt_qoo_test/modules/top_stories/presentation/top_stories_list_screen.dart';
 
@@ -25,6 +27,11 @@ class AppRouters {
       name: TopStoriesDetailsScreen.routeName,
       page: () => TopStoriesDetailsScreen(),
       binding: TopStoriesDetailsBinding(),
+    ),
+    GetPage(
+      name: ArticlesSearchScreen.routeName,
+      page: () => ArticlesSearchScreen(),
+      binding: ArticlesSearchBinding(),
     ),
   ];
 }

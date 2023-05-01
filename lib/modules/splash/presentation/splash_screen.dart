@@ -28,7 +28,7 @@ class SplashScreen extends StatelessWidget {
              if (controller.pageState.value == SplashState.loading) {
               return getWaitingWidget(pageIdentifier);
             } else if (controller.pageState.value == SplashState.error) {
-              return getErrorWidget(pageIdentifier, controller.baseResponse.error ?? 'unknownError'.tr);
+              return getErrorWidget(pageIdentifier, 'unknownError'.tr);
             } else {
               return OrientationBuilder(
                 builder: (context , orientation){

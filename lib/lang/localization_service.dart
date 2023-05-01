@@ -1,9 +1,8 @@
 import 'dart:ui';
 
-import '../core/constans.dart';
+import '../core/constants.dart';
 import 'package:get/get.dart';
 
-import '../lang/ar_sy.dart';
 import '../lang/en_us.dart';
 
 

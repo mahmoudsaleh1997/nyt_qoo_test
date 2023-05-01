@@ -6,8 +6,7 @@ class AppConstants {
   static const baseImagePath = 'assets/images/';
 
   /// svg icon
-  static const listViewIcon = '${baseIconPath}list_view_icon.svg';
-  static const gridViewIcon = '${baseIconPath}grid_view_icon.svg';
+
   static const searchIcon = '${baseIconPath}search.svg';
   static const filterIcon = '${baseIconPath}filter.svg';
 
@@ -16,8 +15,10 @@ class AppConstants {
   /// PNG Images
   static const logo = '${baseImagePath}logo.png';
 
-  /// Design => fonts, shadows, text style, etc...
+  /// API Constants
+  static const apiKay = 'qFBdmXPMyphLBHzsTgp6HiwtTXSJiuBa';
 
+  static const baseImageUrl = 'https://static01.nyt.com/';
 
   /// language constants
   static const String englishLang = 'en';

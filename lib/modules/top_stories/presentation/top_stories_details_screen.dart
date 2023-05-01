@@ -47,8 +47,7 @@ class TopStoriesDetailsScreen extends StatelessWidget {
               return getWaitingWidget(pageIdentifier);
             } else if (controller.pageState.value ==
                 TopStoriesDetailsState.error) {
-              return getErrorWidget(pageIdentifier,
-                  controller.baseResponse.error ?? 'unknownError'.tr);
+              return getErrorWidget(pageIdentifier, 'unknownError'.tr);
             } else {
               return OrientationBuilder(
                 builder: (context, orientation) {
@@ -78,26 +77,29 @@ class TopStoriesDetailsScreen extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: CustomNetworkImage(
-                      height: 0.3.sh,
-                      loadingWidget: ImageShimmerEffect(
+                    child: Hero(
+                      tag: '${controller.articleDetailsModel.index}',
+                      child: CustomNetworkImage(
                         height: 0.3.sh,
+                        loadingWidget: ImageShimmerEffect(
+                          height: 0.3.sh,
+                          width: 0.9.sw,
+                          raduis: 10,
+                        ),
+                        errorWidget: Icon(Icons.error),
+                        imageUrl: controller.getBigImage(),
                         width: 0.9.sw,
-                        raduis: 10,
+                        boxFit: BoxFit.contain,
                       ),
-                      errorWidget: Icon(Icons.error),
-                      imageUrl: 'https://picsum.photos/id/237/200/300',
-                      width: 0.9.sw,
-                      boxFit: BoxFit.contain,
                     ),
                   ),
                   Gaps.vGap16,
                   Center(
                       child: AppTextWidget(
-                        title: 'This is the title of the story ' * 4,
+                        title: controller.articleDetailsModel.title ?? 'No Title Available',
                         width: 0.9.sw,
                         maxLines: 3,
-                        fontSize: 18.sp,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.bold,
                         textAlign: TextAlign.center,
                       )),
@@ -109,28 +111,47 @@ class TopStoriesDetailsScreen extends StatelessWidget {
                   Gaps.vGap16,
                   Center(
                       child: Text(
-                        'This is the title of the story ' * 4,
+                        controller.articleDetailsModel.abstract ?? 'No Description Available',
                         style: TextStyle(
                           color: AppColors.black,
                           fontSize: 17.sp,
                         ),
-                      )),
+                      ),),
+                  Gaps.vGap16,
+                  Divider(
+                    color: AppColors.black.withOpacity(0.4),
+                    thickness: 1,
+                  ),
+                  Gaps.vGap16,
+                  AppTextWidget(
+                    title: controller.articleDetailsModel.byLine?? 'No Author Available',
+                    width: 0.5.sw,
+                    maxLines: 3,
+                    color: AppColors.grey,
+                    fontSize: 15.sp,
+                  ),
+
                 ],
               ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
-                height: 50.h,
-                decoration: BoxDecoration(
-                    color: AppColors.darkBlueColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: AppTextWidget(
-                    title: 'Read More',
-                    color: AppColors.white,
+              child: GestureDetector(
+                onTap: (){
+                  controller.onReadMoreTapped();
+                },
+                child: Container(
+                  height: 50.h,
+                  decoration: BoxDecoration(
+                      color: AppColors.darkBlueColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Center(
+                    child: AppTextWidget(
+                      title: 'Read More',
+                      color: AppColors.white,
 
+                    ),
                   ),
                 ),
               ),
@@ -146,11 +167,12 @@ class TopStoriesDetailsScreen extends StatelessWidget {
       width: 1.sw,
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: CustomNetworkImage(
-              width: 0.3.sw,
+              width: 0.4.sw,
               height: 1.sh,
               loadingWidget: ImageShimmerEffect(
                 height: 1.sh,
@@ -158,23 +180,23 @@ class TopStoriesDetailsScreen extends StatelessWidget {
                 raduis: 10,
               ),
               errorWidget: Icon(Icons.error),
-              imageUrl: 'https://picsum.photos/id/237/200/300',
+              imageUrl: controller.getBigImage(),
 
-              boxFit: BoxFit.contain,
+              boxFit: BoxFit.fill,
             ),
           ),
           Gaps.hGap8,
           SizedBox(
-            width: 0.6.sw,
+            width: .5.sw,
             height: 1.sh,
             child: ListView(
               children: [
                 Center(
                     child: AppTextWidget(
-                      title: 'This is the title of the story ' * 4,
+                      title: controller.articleDetailsModel.title ?? 'No Title Available',
                       width: 0.9.sw,
                       maxLines: 3,
-                      fontSize: 18.sp,
+                      fontSize: 20.sp,
                       fontWeight: FontWeight.bold,
                       textAlign: TextAlign.center,
                     )),
@@ -186,25 +208,43 @@ class TopStoriesDetailsScreen extends StatelessWidget {
                 Gaps.vGap16,
                 Center(
                     child: Text(
-                      'This is the title of the story ' * 30,
+                      controller.articleDetailsModel.abstract ?? 'No Description Available',
                       style: TextStyle(
                         color: AppColors.black,
                         fontSize: 17.sp,
                       ),
                     )),
                 Gaps.vGap16,
-                Container(
-                  height: 50.h,
-                  width: 0.6.sw,
-                  decoration: BoxDecoration(
-                    color: AppColors.darkBlueColor,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: AppTextWidget(
-                      title: 'Read More',
-                      color: AppColors.white,
+                Divider(
+                  color: AppColors.black.withOpacity(0.4),
+                  thickness: 1,
+                ),
+                Gaps.vGap16,
+                AppTextWidget(
+                  title: controller.articleDetailsModel.byLine ?? 'No Author Available',
+                  width: 0.5.sw,
+                  maxLines: 3,
+                  color: AppColors.grey,
+                  fontSize: 15.sp,
+                ),
+                Gaps.vGap16,
+                GestureDetector(
+                  onTap: (){
+                    controller.onReadMoreTapped();
+                  },
+                  child: Container(
+                    height: 50.h,
+                    width: 0.6.sw,
+                    decoration: BoxDecoration(
+                      color: AppColors.darkBlueColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: AppTextWidget(
+                        title: 'Read More',
+                        color: AppColors.white,
 
+                      ),
                     ),
                   ),
                 ),

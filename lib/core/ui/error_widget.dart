@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import '../../widget/app_text_widget.dart';
 import 'package:get/get.dart';
 getErrorWidget(String key, error){
-  return PrivacyPolicyErrorWidget(error: error,);
+  return DefaultErrorWidget(error: error,);
 }
 
-class PrivacyPolicyErrorWidget extends StatelessWidget {
-  PrivacyPolicyErrorWidget({
+class DefaultErrorWidget extends StatelessWidget {
+  DefaultErrorWidget({
     required this.error,
   });
 
@@ -16,11 +16,9 @@ class PrivacyPolicyErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
-      child: Center(
-        child: AppTextWidget(
-          title: error,
-        ),
+    return  Center(
+      child: AppTextWidget(
+        title: error,
       ),
     );
   }
