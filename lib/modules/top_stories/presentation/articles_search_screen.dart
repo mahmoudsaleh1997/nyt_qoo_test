@@ -47,18 +47,17 @@ class ArticlesSearchScreen extends StatelessWidget {
         body: Container(
           height: 1.sh,
           width: 1.sw,
-          padding:const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomSearchInputField(
                 height: 50.h,
                 searchController: controller.searchFieldController,
-                onSubmit: (v){
+                onSubmit: (v) {
                   controller.search();
                 },
               ),
-
               Gaps.vGap16,
               RichText(
                 text: TextSpan(
@@ -82,8 +81,7 @@ class ArticlesSearchScreen extends StatelessWidget {
               ),
               Gaps.vGap16,
               GetBuilder<ArticlesSearchController>(builder: (_) {
-                if (controller.pageState.value ==
-                    ArticlesSearchState.loading) {
+                if (controller.pageState.value == ArticlesSearchState.loading) {
                   return getWaitingWidget(pageIdentifier);
                 } else if (controller.pageState.value ==
                     ArticlesSearchState.error) {
@@ -126,7 +124,7 @@ class ArticlesSearchScreen extends StatelessWidget {
                               );
                             }
                             if (state == LoadStatus.loading) {
-                              return getWaitingWidget(pageIdentifier);
+                              return DefaultWaitingWidget();
                             }
                             if (state == LoadStatus.failed) {
                               return Text("Load Failed! Click retry!");
@@ -164,8 +162,7 @@ class ArticlesSearchScreen extends StatelessWidget {
                                     border: Border.all(
                                         width: 1, color: AppColors.gold)),
                                 child: Row(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(10),

@@ -33,7 +33,9 @@ class AppTextWidget extends StatelessWidget {
                 color: color ?? AppColors.black,
                 fontSize: fontSize,
                 fontWeight: fontWeight ?? FontWeight.normal,
-                overflow: TextOverflow.ellipsis),
+                overflow: TextOverflow.ellipsis,
+
+            ),
             overflow: TextOverflow.ellipsis,
           maxLines: maxLines,
           textAlign: textAlign,

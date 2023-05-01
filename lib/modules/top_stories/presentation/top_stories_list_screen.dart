@@ -310,10 +310,10 @@ class TopStoriesListScreen extends StatelessWidget {
                           child: CustomNetworkImage(
                             width: 0.3.sw,
                             imageUrl: controller.getSmallImageOfStory(index),
-                            height: 100,
+                            height: 120,
                             errorWidget: Icon(Icons.error),
                             loadingWidget: ImageShimmerEffect(
-                              height: 100,
+                              height: 120,
                               width: 0.3.sw,
                               raduis: 10,
                             ),
@@ -323,7 +323,7 @@ class TopStoriesListScreen extends StatelessWidget {
                       ),
                       Gaps.hGap8,
                       Container(
-                        height: 100,
+                        height: 120,
                         width: 0.5.sw,
                         padding: EdgeInsets.symmetric(vertical: 5),
                         child: Column(
