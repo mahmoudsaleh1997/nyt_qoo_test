@@ -1,0 +1,7 @@
+name: Github action demo
+on: push
+jobs:
+  Example-actions-job:
+    name: Test job name
+    runs-on: Mac-os
+      
